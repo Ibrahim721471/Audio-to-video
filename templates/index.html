@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to Video</title>
+</head>
+<body>
+    <h1>Convert Audio to Green Background Video</h1>
+    
+    <!-- Form for file upload -->
+    <form method="POST" enctype="multipart/form-data">
+        <label for="audio">Upload your audio file:</label>
+        <input type="file" id="audio" name="audio" accept="audio/*" required>
+        <button type="submit">Upload and Convert</button>
+    </form>
+
+    {% if video_paths %}
+        <h2>Download Your Videos</h2>
+        <ul>
+            {% for path in video_paths %}
+                <li><a href="{{ url_for('download_file', filename=path.split('/')[-1]) }}">Download {{ path.split('/')[-1] }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
